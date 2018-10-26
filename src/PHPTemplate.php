@@ -115,4 +115,8 @@ final class PHPTemplate implements \ArrayAccess {
   public function error(string $error_message, int $error_code = 0): void {
     throw new TemplateError($error_message, $error_code);
   }
+
+  public function __toString(): string {
+    return '';
+  }
 }
