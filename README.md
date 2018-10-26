@@ -1,18 +1,19 @@
 # PHPTemplate
 Lightweight, fast, and simple template engine that you write templates in PHP.
 
+[![Build Status](https://travis-ci.org/Ayesh/PHPTemplate.svg?branch=master)](https://travis-ci.org/Ayesh/PHPTemplate) [![License](https://poser.pugx.org/Ayesh/PHPTemplate/license)](https://packagist.org/packages/ayesh/phptemplate) [![Latest Stable Version](https://poser.pugx.org/ayesh/phptemplate/version)](https://packagist.org/packages/ayesh/phptemplate) [![SymfonyInsight](https://insight.symfony.com/projects/95c60605-347f-4bac-9e6a-429cdadb94ec/mini.svg)](https://insight.symfony.com/projects/95c60605-347f-4bac-9e6a-429cdadb94ec)
+
 PHPTemplate is a very simple and light weight template engine that you can write your templates in PHP, but still tries to help you write secure-by-default templates. It provides secure-by-default variable access, and a few helper methods that you will learn in 30 seconds and you are all set to use it!
 
 In its simplest form, you can throw in any PHP file, and its output will be returned. You can optionally pass additional variables that will be made accessible inside the template, and these variables will be sanitized by default to make it difficult to forget sanitizing any user input.
 
 #### Simple Example
 
-**Template file: `test-template.php`:**
+*Template file: `test-template.php`:*
 ```html
 <strong>Hello World</strong>
 ```
-
-How to use template:
+*How to use template:*
 ```php
 $template = new Ayesh\PHPTemplate\PHPTemplate();
 $contents = $template->render('test-template.php'); // <-- Path to the template file.
@@ -41,7 +42,7 @@ Within the template, the special `$v` variable will be available, and will conta
 
 Every time you access these variables, they will be sanitized by default. In the example above, note that the `$vars['name']` variable contains a JavaScript. If you do not sanitize this variable, it will be interpreted as JavaScript, making your site vulnerable to Cross Site Scripting attacks. However, PHPTemplate library sanitizes these variables by default, which gives the following output:
 
-```php
+```html
 Good morning <em>&lt;script&gt;alert(&quot;xss!&quot;);&lt;/script&gt;<em>,
 Welcome to PHPTemplate
 ```
@@ -49,8 +50,8 @@ Welcome to PHPTemplate
 The above snippet contains the HTML you used in the template file, but notice how the `$vars['name']` variable is sanitized to HTML entities. Browsers will _not_ interpret this as JavaScript, and will instead print the literal characters `<script>alert("xss!");</script>`. When you print this to the browser, your users will see the following, **without the browser interpreting JavaScript**:
 
 
-Good morning *`<script>alert("xss!");</script>`*
-Welcome to PHPTemplate
+> Good morning *`<script>alert("xss!");</script>`* Welcome to
+> PHPTemplate
 
 In addition to HTML sanitizing, this library provides sanitation for URLs as well. Consider the following template:
 
