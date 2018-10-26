@@ -4,6 +4,7 @@ namespace Ayesh\PHPTemplate\Tests;
 
 use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\CodeCoverage\Report\PHP;
 
 class StringEscapeTest extends TestCase {
   public function testHtmlEscape(): void {
