@@ -2,6 +2,7 @@
     "name": "ayesh/phptemplate",
     "description": "Lightweight, fast, and simple template engine that you write templates in PHP.",
     "type": "library",
+    "keywords": ["template", "template-engine", "php-template", "templating", "html"],
     "require": {
       "php": "^7.2"
     },
