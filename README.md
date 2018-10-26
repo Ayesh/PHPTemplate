@@ -142,6 +142,7 @@ that would result:
 ```
 ---
 **`$v->error('Something went wrong')`**
+
 This is a shortcut to throw an error of type `TemplateError` that the parent caller can catch. You will probably never need to use this method, but this is an easy way to throw an error if your template cannot proceed and you want to terminate and report it to the parent callers.
 
 ### Contributions
