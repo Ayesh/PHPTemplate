@@ -25,5 +25,9 @@
       "psr-4": {
         "Ayesh\\PHPTemplate\\Tests\\": "tests/"
       }
+    },
+    "scripts": {
+      "test": ["phpunit "],
+      "benchmark": ["php tests/Benchmark/run-benchmarks.php"]
     }
 }
