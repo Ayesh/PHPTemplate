@@ -119,15 +119,18 @@ Returns the original `variable` set in `new PHPTemplate(['variable' => foo])` ca
 ---
 
 **`$v->escape('foo')`**
+
 Escapes the provided literal string to make sure it does not contain anything that would be interpreted as HTML. You can also use this `escape` method inside HTML attributes as it would also convert single and double quotes to HTML entities.
 
 ---
 
 **`$v->url('https://example.com')`**
+
 Sanitizes the provided URL making sure it only contains relative paths, or URIs whose protocol is `http://`, `https://`, or `ftp://`. Any other protocols such as `javascript:` will be removed.
 
 ---
 **`$v->attributes(['foo' => 'bar')`**
+
 Expands the provided array into HTML attributes. In this example, you can use the template
 
 ```php
