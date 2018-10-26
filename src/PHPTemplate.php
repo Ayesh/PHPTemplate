@@ -141,4 +141,16 @@ final class PHPTemplate implements \ArrayAccess {
   public function __toString(): string {
     return '';
   }
+
+  public function __set($name, $value): void {
+    return;
+  }
+
+  public function __isset($name) {
+    return false;
+  }
+
+  public function __get($name) {
+    return '';
+  }
 }
