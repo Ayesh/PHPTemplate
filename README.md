@@ -90,6 +90,12 @@ composer require ayesh/phptemplate
 
 By default, the download will not contain the `tests` directory that contains some templates used in automated tests. If you download the library as a Git clone, or in any other way (such as composer prefer source), please make sure the `tests` directory is not accessible via your web server. These scripts do not contain anything harmful, but will output some random strings to the browsers that you do not want. The good news is unless you explicitly download the source as-is, these tests will not be included.
 
+After installing, you can include the composer autoloader:
+
+```php
+require 'vendor/autoload.php';
+```
+
 ### Reference
 
 #### Accessing variables
