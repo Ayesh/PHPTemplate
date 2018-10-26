@@ -8,7 +8,7 @@ use Ayesh\PHPTemplate\Exception\TemplateError;
 use Ayesh\PHPTemplate\Exception\TemplateNotFound;
 
 final class PHPTemplate implements \ArrayAccess {
-  private $vars = [];
+  private $vars;
 
   private const ALLOWED_URL_PROTOCOLS = [
     'http', 'https', 'ftp'
@@ -17,6 +17,7 @@ final class PHPTemplate implements \ArrayAccess {
   public function __construct(array $vars = []) {
     $this->vars = &$vars;
   }
+
 
   public function render(string $template_path): string {
     if (!file_exists($template_path)) {
@@ -28,8 +29,15 @@ final class PHPTemplate implements \ArrayAccess {
 
   private static function renderTemplate($path, PHPTemplate $v): string {
     ob_start();
-    /** @noinspection PhpIncludeInspection */
-    include $path;
+    try {
+      /** @noinspection PhpIncludeInspection */
+      include $path;
+    }
+    catch (\Exception $exception) {
+      ob_end_clean();
+      throw $exception;
+    }
+
     return ob_get_clean();
   }
 

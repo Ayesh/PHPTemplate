@@ -20,7 +20,9 @@ class SanitizerTest extends TestCase {
 
   public function testUrlSanitizeJS() {
     $template = new PHPTemplate([
-      'url' => "javascript:alert('xss!');"
+      'url' => "javascript:alert('xss!');",
+      'url2' => 'https://ayeshious.com?query=test:pass#fragment',
+      'url3' => 'normal-path#test:true',
     ]);
 
     $content = $template->render(__DIR__ . '/fixtures/template-url-js.php');
@@ -28,6 +30,8 @@ class SanitizerTest extends TestCase {
 <a href="alert(&#039;xss!&#039;);">Test</a>
 <a href="javascript:alert(&#039;xss!&#039;);">Test</a>
 <a href="javascript:alert('xss!');">Test</a>
+<a href="https://ayeshious.com?query=test:pass#fragment">Test</a>
+<a href="normal-path#test:true">Test</a>
 EXPECTED;
 
     $this->assertSame($expected, $content);
