@@ -115,6 +115,20 @@ final class PHPTemplate implements \ArrayAccess {
   }
 
   /**
+   * @param array $attributes
+   *
+   * @return string
+   */
+  public function attributes(array $attributes): string {
+    foreach ($attributes as $attribute => &$data) {
+      $data = implode(' ', (array) $data);
+      $data = $attribute . '="' . $this->escape($data) . '"';
+    }
+
+    return $attributes ? ' ' . implode(' ', $attributes) : '';
+  }
+
+  /**
    * @param string $error_message
    * @param int $error_code
    *
