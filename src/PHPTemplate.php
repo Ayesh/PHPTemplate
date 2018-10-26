@@ -75,7 +75,7 @@ final class PHPTemplate implements \ArrayAccess {
   }
 
   private function getVar(string $offet): string {
-    if (isset($this->vars[$offet]) && \is_string($this->vars[$offet])) {
+    if (isset($this->vars[$offet]) && \is_scalar($this->vars[$offet]) && !\is_bool($this->vars[$offet])) {
       return $this->vars[$offet];
     }
     return '';
