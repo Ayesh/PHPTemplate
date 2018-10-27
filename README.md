@@ -54,8 +54,9 @@ Welcome to PHPTemplate
 The above snippet contains the HTML you used in the template file, but notice how the `$vars['name']` variable is sanitized to HTML entities. Browsers will _not_ interpret this as JavaScript, and will instead print the literal characters `<script>alert("xss!");</script>`. When you print this to the browser, your users will see the following, **without the browser interpreting JavaScript**:
 
 
-> Good morning *`<script>alert("xss!");</script>`* Welcome to
-> PHPTemplate
+> Good morning *`<script>alert("xss!");</script>`*
+> 
+> Welcome to PHPTemplate
 
 In addition to HTML sanitizing, this library provides sanitation for URLs as well. Consider the following template:
 
