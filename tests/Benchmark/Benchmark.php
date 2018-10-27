@@ -10,6 +10,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 class Benchmark {
   public function benchmarkFull(): float {
     new PHPTemplate(); // Autoload.
+
     $vars = [
       'foo' => 'bar',
       'bar' => 'baz',
@@ -19,10 +20,12 @@ class Benchmark {
     ];
 
     $timer = new Stopwatch();
+
     for ($i = 0; $i < 10000; $i++) {
-      $template = new PHPTemplate($vars);
-      $template->render(__DIR__ . '/../fixtures/template-benchmark.php');
+      $template = new PHPTemplate(__DIR__ . '/../fixtures/template-benchmark.php', $vars);
+      $template->render();
     }
+
     return $timer->stop();
   }
 }

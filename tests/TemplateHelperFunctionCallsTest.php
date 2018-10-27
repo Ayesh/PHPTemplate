@@ -7,8 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class TemplateHelperFunctionCallsTest extends TestCase {
   public function testTemplateFunctionCalls() {
-    $template = new PHPTemplate();
-    $content = $template->render(__DIR__ . '/fixtures/template-func-calls.php');
+    $template = new PHPTemplate(__DIR__ . '/fixtures/template-func-calls.php');
+    $content = $template->render();
 
     $expected = <<<EXPECTED
 <div>
@@ -22,12 +22,12 @@ EXPECTED;
   }
 
   public function testTemplateAttributesSpreading() {
-    $template = new PHPTemplate(['vars' => [
+    $template = new PHPTemplate(__DIR__ . '/fixtures/template-attributes.php');
+
+    $content = $template->render(['vars' => [
       'foo' => 'bar',
       'baz' => ['hi', '"Escape', "'escape"],
     ]]);
-
-    $content = $template->render(__DIR__ . '/fixtures/template-attributes.php');
 
     $expect = <<<EXPECT
 <foo  foo="bar" baz="hi &quot;Escape &#039;escape" />

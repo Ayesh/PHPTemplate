@@ -10,26 +10,26 @@ use PHPUnit\Framework\TestCase;
 
 class TemplateRendereTest extends TestCase {
   public function testNonExistentTemplateThrows() {
-    $template = new PHPTemplate();
+    $template = new PHPTemplate('test-43432');
     $this->expectException(TemplateNotFound::class);
-    $template->render('test-43432');
+    $template->render();
   }
 
   public function testTemplateRawContent() {
-    $template = new PHPTemplate();
-    $content = $template->render(__DIR__ . '/fixtures/template-test-1.php');
+    $template = new PHPTemplate(__DIR__ . '/fixtures/template-test-1.php');
+    $content = $template->render();
     $this->assertSame('Hi', $content);
   }
 
   public function testTemplateRawContent_2() {
-    $template = new PHPTemplate();
-    $content = $template->render(__DIR__ . '/fixtures/template-test-2.php');
+    $template = new PHPTemplate(__DIR__ . '/fixtures/template-test-2.php');
+    $content = $template->render();
     $this->assertSame('<strong>Hi!</strong>', $content);
   }
 
   public function testTemplatePHPIgnoredWithoutTags() {
-    $template = new PHPTemplate();
-    $content = $template->render(__DIR__ . '/fixtures/template-without-php-tags.php');
+    $template = new PHPTemplate(__DIR__ . '/fixtures/template-without-php-tags.php');
+    $content = $template->render();
     $this->assertSame('Hi $v;', $content);
   }
 }

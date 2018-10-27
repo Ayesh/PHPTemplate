@@ -4,27 +4,41 @@
 namespace Ayesh\PHPTemplate;
 
 
+use Ayesh\PHPTemplate\Exception\BadMethodCallException;
 use Ayesh\PHPTemplate\Exception\TemplateError;
 use Ayesh\PHPTemplate\Exception\TemplateNotFound;
 
 final class PHPTemplate implements \ArrayAccess {
   private $vars;
+  private $template_file;
 
   private const ALLOWED_URL_PROTOCOLS = [
     'http', 'https', 'ftp'
   ];
 
-  public function __construct(array $vars = []) {
-    $this->vars = &$vars;
+  public function __construct(string $template_file = null, array $vars = []) {
+    $this->template_file = $template_file;
+    $this->set($vars);
+  }
+
+  public function set(array $vars = []): void {
+    $this->vars = $vars;
   }
 
 
-  public function render(string $template_path): string {
-    if (!file_exists($template_path)) {
-      throw new TemplateNotFound(sprintf('Template %s could not be loaded.', $template_path));
+  public function render(array $vars = null): string {
+    if (empty($this->template_file)) {
+      throw new BadMethodCallException('Calls to render() method is illegal when a template path is not set.');
+    }
+    if (!file_exists($this->template_file)) {
+      throw new TemplateNotFound(sprintf('Template %s could not be loaded.', $this->template_file));
     }
 
-    return trim(self::renderTemplate($template_path, $this));
+    if (null !== $vars) {
+      $this->set($vars);
+    }
+
+    return trim(self::renderTemplate($this->template_file, $this));
   }
 
   private static function renderTemplate($path, PHPTemplate $v): string {

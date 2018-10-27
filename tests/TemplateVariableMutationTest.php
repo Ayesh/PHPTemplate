@@ -7,8 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class TemplateVariableMutationTest extends TestCase {
   public function testTemplateVarMutation() {
-    $template = new PHPTemplate();
-    $content = $template->render(__DIR__  . '/fixtures/template-changing-vars.php');
+    $template = new PHPTemplate(__DIR__  . '/fixtures/template-changing-vars.php');
+    $content = $template->render();
 
     $expected = <<<EXPECTED
 Hi Ayesh!
