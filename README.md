@@ -5,6 +5,10 @@ Lightweight, fast, and simple template engine that you write templates in PHP.
 
 PHPTemplate is a very simple and light weight template engine that you can write your templates in PHP, but still tries to help you write secure-by-default templates. It provides secure-by-default variable access, and a few helper methods that you will learn in 30 seconds and you are all set to use it!
 
+> **I wish we had more templating engines in PHP.**
+>
+> *-- No one | ever.*
+
 In its simplest form, you can throw in any PHP file, and its output will be returned. You can optionally pass additional variables that will be made accessible inside the template, and these variables will be sanitized by default to make it difficult to forget sanitizing any user input.
 
 #### Simple Example
@@ -15,8 +19,8 @@ In its simplest form, you can throw in any PHP file, and its output will be retu
 ```
 *How to use template:*
 ```php
-$template = new Ayesh\PHPTemplate\PHPTemplate();
-$contents = $template->render('test-template.php'); // <-- Path to the template file.
+$template = new Ayesh\PHPTemplate\PHPTemplate('test-template.php'); // <-- Path to the template file.
+$contents = $template->render();
 // $contents will contain the contents of the `test-template.php` file.
 ```
 
@@ -34,8 +38,8 @@ $vars = [
   'name' => '<script>alert("xss!");</script>',
   'sitename' => 'PHPTemplate',
 ];
-$template = new Ayesh\PHPTemplate\PHPTemplate($vars);
-$contents = $template->render('test-template.php');
+$template = new Ayesh\PHPTemplate\PHPTemplate('test-template.php');
+$contents = $template->render($vars);
 ```
 
 Within the template, the special `$v` variable will be available, and will contain all the variables you provided at the time you instantiated the `$template` object.
@@ -68,8 +72,8 @@ The above template will be rendered as:
 $vars = [
   'user_website' => 'javascript:alert("xss");',
 ];
-$template = new Ayesh\PHPTemplate\PHPTemplate($vars);
-$contents = $template->render('test-template.php');
+$template = new Ayesh\PHPTemplate\PHPTemplate('test-template.php');
+$contents = $template->render($vars);
 ```
 
 *Output:*
@@ -147,3 +151,4 @@ This is a shortcut to throw an error of type `TemplateError` that the parent cal
 
 ### Contributions
 Contributions are welcome! Please note that my goal is to have a bare minimum template engine that simply does the job and leaves anything complex to whoever writes the template. Performance improvements and simple+useful helper methods would be highly appreciated. For security issues, please [contact me](https://ayesh.me/contact) instead of reporting them in public issue queues.
+
