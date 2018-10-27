@@ -9,3 +9,5 @@ before_script:
 script:
 - composer test
 - composer benchmark
+after_success:
+- bash <(curl -s https://codecov.io/bash)
