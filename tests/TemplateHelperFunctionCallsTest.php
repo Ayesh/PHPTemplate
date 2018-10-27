@@ -6,7 +6,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
 
 class TemplateHelperFunctionCallsTest extends TestCase {
-  public function testTemplateFunctionCalls() {
+  public function testTemplateFunctionCalls(): void {
     $template = new PHPTemplate(__DIR__ . '/fixtures/template-func-calls.php');
     $content = $template->render();
 
@@ -21,7 +21,7 @@ EXPECTED;
     $this->assertSame($expected, $content);
   }
 
-  public function testTemplateAttributesSpreading() {
+  public function testTemplateAttributesSpreading(): void {
     $template = new PHPTemplate(__DIR__ . '/fixtures/template-attributes.php');
 
     $content = $template->render(['vars' => [

@@ -88,9 +88,9 @@ final class PHPTemplate implements \ArrayAccess {
     unset($this->vars[$offset]);
   }
 
-  private function getVar(string $offet): string {
-    if (isset($this->vars[$offet]) && \is_scalar($this->vars[$offet]) && !\is_bool($this->vars[$offet])) {
-      return $this->vars[$offet];
+  private function getVar(string $offset): string {
+    if (isset($this->vars[$offset]) && \is_scalar($this->vars[$offset]) && !\is_bool($this->vars[$offset])) {
+      return $this->vars[$offset];
     }
     return '';
   }
@@ -103,13 +103,14 @@ final class PHPTemplate implements \ArrayAccess {
     $allowed_protocols = array_flip(static::ALLOWED_URL_PROTOCOLS);
 
     // Iteratively remove any invalid protocol found.
+    // Borrowed from Drupal.
     do {
       $before = $uri;
-      $colonpos = strpos($uri, ':');
-      if ($colonpos > 0) {
+      $colon_position = strpos($uri, ':');
+      if ($colon_position > 0) {
 
         // We found a colon, possibly a protocol. Verify.
-        $protocol = substr($uri, 0, $colonpos);
+        $protocol = substr($uri, 0, $colon_position);
 
         // If a colon is preceded by a slash, question mark or hash, it cannot
         // possibly be part of the URL scheme. This must be a relative URL, which
@@ -121,7 +122,7 @@ final class PHPTemplate implements \ArrayAccess {
         // Check if this is a disallowed protocol. Per RFC2616, section 3.2.3
         // (URI Comparison) scheme comparison must be case-insensitive.
         if (!isset($allowed_protocols[strtolower($protocol)])) {
-          $uri = substr($uri, $colonpos + 1);
+          $uri = substr($uri, $colon_position + 1);
         }
       }
     } while ($before !== $uri);
@@ -157,7 +158,6 @@ final class PHPTemplate implements \ArrayAccess {
   }
 
   public function __set($name, $value): void {
-    return;
   }
 
   public function __isset($name) {

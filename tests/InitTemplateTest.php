@@ -7,7 +7,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
 
 class InitTemplateTest extends TestCase {
-  public function testInit() {
+  public function testInit(): void {
     $template = new PHPTemplate();
     $this->assertInstanceOf(PHPTemplate::class, $template);
 

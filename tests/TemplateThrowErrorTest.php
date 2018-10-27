@@ -7,7 +7,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
 
 class TemplateThrowErrorTest extends TestCase {
-  public function testTemplateCanThrowErrors() {
+  public function testTemplateCanThrowErrors(): void {
     /** @noinspection PhpUnhandledExceptionInspection */
     $code = random_int(PHP_INT_MIN, PHP_INT_MAX);
 

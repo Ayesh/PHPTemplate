@@ -4,7 +4,6 @@ namespace Ayesh\PHPTemplate\Tests;
 
 use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\CodeCoverage\Report\PHP;
 
 class StringEscapeTest extends TestCase {
   public function testHtmlEscape(): void {
@@ -30,7 +29,7 @@ class StringEscapeTest extends TestCase {
     $this->assertNull($template->get('test2'));
   }
 
-  public function testReturnUnmodified() {
+  public function testReturnUnmodified(): void {
     $template = new PHPTemplate('', ['test' => '<script>alert("")</script>']);
     $return = $template->get('test');
     $this->assertSame('<script>alert("")</script>', $return);

@@ -6,7 +6,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
 
 class TemplateVariableMutationTest extends TestCase {
-  public function testTemplateVarMutation() {
+  public function testTemplateVarMutation(): void {
     $template = new PHPTemplate(__DIR__  . '/fixtures/template-changing-vars.php');
     $content = $template->render();
 

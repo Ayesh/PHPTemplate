@@ -6,7 +6,7 @@ use Ayesh\PHPTemplate\PHPTemplate;
 use PHPUnit\Framework\TestCase;
 
 class SanitizerTest extends TestCase {
-  public function testHtmlEscape() {
+  public function testHtmlEscape(): void {
     $template = new PHPTemplate(__DIR__ . '/fixtures/template-hello-name.php');
 
     $content = $template->render([
@@ -21,7 +21,7 @@ class SanitizerTest extends TestCase {
     $this->assertSame('Hello <strong>Ayesh</strong>!', $content);
   }
 
-  public function testUrlSanitizeJS() {
+  public function testUrlSanitizeJS(): void {
     $template = new PHPTemplate(__DIR__ . '/fixtures/template-url-js.php');
 
     $content = $template->render([
