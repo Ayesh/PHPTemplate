@@ -46,8 +46,7 @@ final class PHPTemplate implements \ArrayAccess {
     try {
       /** @noinspection PhpIncludeInspection */
       include $path;
-    }
-    catch (\Exception $exception) {
+    } catch (\Exception $exception) {
       ob_end_clean();
       throw $exception;
     }
