@@ -55,7 +55,7 @@ The above snippet contains the HTML you used in the template file, but notice ho
 
 
 > Good morning *`<script>alert("xss!");</script>`*
-> 
+>
 > Welcome to PHPTemplate
 
 In addition to HTML sanitizing, this library provides sanitation for URLs as well. Consider the following template:
@@ -110,7 +110,7 @@ require 'vendor/autoload.php';
 
 Note that this kind of array accessing is **guaranteed to be a string**.  If you access a variable that is not set, or any other type other than a **string, float, or an integer**,  an empty string will be returned instead. This makes it easier to access variables that you are not sure if exists.
 
-To access complex variables, you can use the `$v->get('variable'])` helper function. It will return whatever variable you set initially. This is **not guaranteed to be a string not is sanitized**.
+To access complex variables, you can use the `$v->get('variable'])` helper function. It will return whatever variable you set initially. This is **not guaranteed to be a string nor is sanitized**.
 
 #### Helper methods
 PHPTemplate provides a few helper methods that can help you build your template.
