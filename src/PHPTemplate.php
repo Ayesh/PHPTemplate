@@ -236,7 +236,7 @@ final class PHPTemplate implements \ArrayAccess {
 	 */
 	public function attributes(array $attributes): string {
 		foreach ($attributes as $attribute => &$data) {
-			$data = implode(' ', (array)$data);
+			$data = implode(' ', (array) $data);
 			$data = $attribute . '="' . $this->escape($data) . '"';
 		}
 
