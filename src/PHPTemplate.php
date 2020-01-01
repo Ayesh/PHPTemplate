@@ -131,7 +131,7 @@ final class PHPTemplate implements \ArrayAccess {
    *   filters applied based on the way their were asked.
    */
   public function offsetGet($offset) {
-    $first_char = $offset{0};
+    $first_char = $offset[0];
 
     switch ($first_char) {
       case ':':
